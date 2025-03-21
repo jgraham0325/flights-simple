@@ -1,19 +1,31 @@
-from pyspark.sql.functions import col, lit
 import argparse
 
+from pyspark.sql.functions import col, lit
+
+
 def get_args():
-    parser = argparse.ArgumentParser(description='Example of parsing arguments with defaults')
+    parser = argparse.ArgumentParser(
+        description="Example of parsing arguments with defaults"
+    )
 
     # Add arguments with default values
-    parser.add_argument('-c', '--catalog', type=str, default='main', help='Target catalog')
-    parser.add_argument('-d', '--database', type=str, default='dustinvannoy_dev', help='Target schema/database')
-    
+    parser.add_argument(
+        "-c", "--catalog", type=str, default="main", help="Target catalog"
+    )
+    parser.add_argument(
+        "-d",
+        "--database",
+        type=str,
+        default="dustinvannoy_dev",
+        help="Target schema/database",
+    )
+
     return parser.parse_args()
 
 
 args = get_args()
 
-print(f'{args.catalog}.{args.database}')
+print(f"{args.catalog}.{args.database}")
 
 table = f"{args.catalog}.{args.database}.flights_raw"
 

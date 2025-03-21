@@ -18,10 +18,12 @@ except IndexError:
 
 try:
     from databricks.connect import DatabricksSession
+
     spark = DatabricksSession.builder.getOrCreate()
 except ModuleNotFoundError:
     from pyspark.sql import SparkSession
+
     spark = SparkSession.builder.getOrCreate()
-    
+
 spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog}.{flights_schema};")
 spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog}.{flights_validation_schema};")

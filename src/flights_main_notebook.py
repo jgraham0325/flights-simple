@@ -1,4 +1,14 @@
 # Databricks notebook source
+import dbutils  # Example import
+from pyspark.sql import SparkSession
+
+from flights.transforms import flight_transforms, shared_transforms
+from flights.utils import flight_utils
+
+# Initialize SparkSession
+spark = SparkSession.builder.getOrCreate()
+
+# Setup widgets
 dbutils.widgets.text("catalog", "main")
 dbutils.widgets.text("database", "flights_dev")
 
@@ -10,11 +20,6 @@ dbutils.widgets.text("database", "flights_dev")
 # COMMAND ----------
 
 # DBTITLE 1,Setup vars and functions
-from flights.transforms import flight_transforms, shared_transforms
-from flights.utils import flight_utils
-
-from flights.utils import flight_utils
-
 catalog = dbutils.widgets.get("catalog")
 database = dbutils.widgets.get("database")
 
@@ -33,10 +38,9 @@ df = flight_utils.read_batch(spark, path).limit(1000)
 
 # COMMAND ----------
 
-df_transformed = (
-        df.transform(flight_transforms.delay_type_transform)
-          .transform(shared_transforms.add_metadata_columns)
-    )
+df_transformed = df.transform(flight_transforms.delay_type_transform).transform(
+    shared_transforms.add_metadata_columns
+)
 
 # COMMAND ----------
 
@@ -45,5 +49,7 @@ df_transformed = (
 
 # COMMAND ----------
 
-df_transformed.write.format("delta").mode("append").option("mergeSchema", "true").saveAsTable(raw_table_name)
-print(f"Succesfully wrote data to {raw_table_name}")
+df_transformed.write.format("delta").mode("append").option(
+    "mergeSchema", "true"
+).saveAsTable(raw_table_name)
+print(f"Successfully wrote data to {raw_table_name}")

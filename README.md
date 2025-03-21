@@ -39,3 +39,9 @@ The 'flights_simple' project was derived from work done by `datakickstart-dabs` 
 7. For documentation on the Databricks asset bundles format used
    for this project, and for CI/CD configuration, see
    https://docs.databricks.com/dev-tools/bundles/index.html.
+
+# Running code formatting, linting and static analysis checks
+
+Run: `pre-commit run --all-files`
+
+Alternatively you can run `pre-commit install` to have these applied each time you commit, however this doesn't work on Databricks laptops since they have their own enforced pre-commit hooks.

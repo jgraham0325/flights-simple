@@ -1,14 +1,13 @@
+import pandas as pd
 from databricks.connect import DatabricksSession
 from pyspark.sql.functions import col, lit
-import pandas as pd
 
 reference_data = pd.read_csv("_adhoc/data/T_CARRIER_DECODE.csv", header=0)
 
 print(reference_data.head())
 
 # Create a SparkSession
-spark = DatabricksSession.builder \
-    .getOrCreate()
+spark = DatabricksSession.builder.getOrCreate()
 
 table = "main.dustinvannoy_dev.flights_raw"
 
