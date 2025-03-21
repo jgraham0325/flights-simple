@@ -10,7 +10,7 @@ from flights.transforms import flight_transforms
 def spark_session():
     try:
         from databricks.connect import DatabricksSession
-        return DatabricksSession.builder.getOrCreate() 
+        return DatabricksSession.builder.serverless(True).getOrCreate()  
     except ImportError:
         print("No Databricks Connect, build and return local SparkSession")
         from pyspark.sql import SparkSession
