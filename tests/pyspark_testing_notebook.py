@@ -1,5 +1,6 @@
 # Databricks notebook source
-# MAGIC %pip install pytest
+# MAGIC %pip install pytest databricks-connect==15.4.2 --upgrade typing_extensions
+dbutils.library.restartPython()
 # MAGIC dbutils.library.restartPython()
 
 # COMMAND ----------
