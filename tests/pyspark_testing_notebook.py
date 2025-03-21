@@ -1,7 +1,16 @@
 # Databricks notebook source
-# MAGIC %pip install pytest databricks-connect==15.4.2 --upgrade typing_extensions
+# MAGIC %md
+# MAGIC # Purpose:
+# MAGIC Used for running pytest tests from a notebook within the Databricks workspace.
+# MAGIC Can run it locally from VS Code but better to use the VS Code testing extension, or run pytest from command line.
+# COMMAND ----------
+# Don't need to run pytest install if running from VS Code, install from dev-requirements.txt instead
+# MAGIC %pip install pytest 
+# COMMAND ----------
+# MAGIC %pip install databricks-connect==16.1.1 
+# COMMAND ----------
+# MAGIC %pip install --upgrade typing_extensions
 dbutils.library.restartPython()
-# MAGIC dbutils.library.restartPython()
 
 # COMMAND ----------
 
