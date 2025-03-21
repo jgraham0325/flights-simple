@@ -43,5 +43,6 @@ The 'flights_simple' project was derived from work done by `datakickstart-dabs` 
 # Running code formatting, linting and static analysis checks
 
 Run: `pre-commit run --all-files`
+This will often report a failure, even if it has fixed the issues. Rerun it to confirm fixes have been applied.
 
 Alternatively you can run `pre-commit install` to have these applied each time you commit, however this doesn't work on Databricks laptops since they have their own enforced pre-commit hooks.
