@@ -2,7 +2,7 @@ from pyspark.sql.types import IntegerType, StringType, StructField, StructType
 
 
 def get_flight_schema():
-    schema = StructType(
+    return StructType(
         [
             StructField("Year", IntegerType(), True),
             StructField("Month", IntegerType(), True),
@@ -37,28 +37,26 @@ def get_flight_schema():
             StructField("IsDepDelayed", StringType(), True),
         ]
     )
-    return schema
 
 
 def read_batch(spark, path):
     schema = get_flight_schema()
 
-    batch_df = (
-        spark.read.format("csv").option("header", "false").schema(schema).load(path)
+    return (
+        spark.read.format("csv")
+        .option("header", "false")
+        .schema(schema)
+        .load(path)
     )
-
-    return batch_df
 
 
 def read_autoloader(spark, path, checkpoint_location):
     schema = get_flight_schema()
 
-    streaming_df = (
+    return (
         spark.readStream.format("cloudFiles")
         .option("cloudFiles.format", "csv")
         .option("cloudFiles.includeExistingFiles", "true")
         .schema(schema)
         .load(path)
     )
-
-    return streaming_df

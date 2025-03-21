@@ -2,7 +2,7 @@
 import os
 import sys
 
-import dlt
+import dlt # type: ignore
 import pyspark  # Added missing import for pyspark
 from pyspark.sql.functions import count, expr, sum
 
@@ -30,10 +30,9 @@ path = spark.conf.get("var.source_path")
 def flights_dlt_raw():
     print("Starting process for flights_dlt_raw")
     df = flight_utils.read_batch(spark, path).limit(1000)
-    df_transformed = df.transform(flight_transforms.delay_type_transform).transform(
+    return df.transform(flight_transforms.delay_type_transform).transform(
         shared_transforms.add_metadata_columns
     )
-    return df_transformed
 
 
 print("Successfully wrote data to flights_dlt_raw")
@@ -46,8 +45,7 @@ def flights_dlt_summary():
     df = dlt.read("flights_dlt_raw").withColumn(
         "is_delayed", expr("case when delay_type is not null then 1 else 0 end")
     )
-    df_summary = df.groupBy("UniqueCarrier", "Year").agg(
+    return df.groupBy("UniqueCarrier", "Year").agg(
         count("*").alias("flights"),
         sum("is_delayed").alias("delayed_flights"),
     )
-    return df_summary

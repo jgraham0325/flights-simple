@@ -30,7 +30,7 @@ if current_dir.split("/")[-1] == "tests":
     root_dir = os.path.dirname(current_dir)
     print("Root dir:", root_dir)
     os.chdir(root_dir)
-    sys.path.append(root_dir + "/src")
+    sys.path.append(f"{root_dir}/src")
 
 # COMMAND ----------
 

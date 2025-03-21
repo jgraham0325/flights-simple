@@ -1,5 +1,5 @@
 # Databricks notebook source
-import dbutils  # Example import
+import dbutils  # type: ignore # Example import
 from pyspark.sql import SparkSession
 
 from flights.transforms import flight_transforms, shared_transforms
