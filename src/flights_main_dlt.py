@@ -21,7 +21,7 @@ path = spark.conf.get("var.source_path")
 # COMMAND ----------
 
 # DBTITLE 1,Read raw
-@dlt.table(comment="Simple batch read of flight data")
+@dlt.table(comment=   "Simple batch read of flight data")
 
 def flights_dlt_raw():
     print("Starting process for flights_dlt_raw")
