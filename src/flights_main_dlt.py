@@ -2,7 +2,7 @@
 import os
 import sys
 
-import dlt # type: ignore
+import dlt  # type: ignore
 import pyspark  # Added missing import for pyspark
 from pyspark.sql.functions import count, expr, sum
 

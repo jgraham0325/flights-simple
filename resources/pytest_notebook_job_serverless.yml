@@ -1,0 +1,14 @@
+# The main job for flights_project
+resources:
+  jobs:
+    pytest_notebook_job_serverless:
+      name: pytest_notebook_job_serverless_${bundle.target}
+
+      tasks:
+        - task_key: notebook_task
+          notebook_task:
+            notebook_path: ../tests/pyspark_testing_notebook_ipynb.ipynb
+            base_parameters:
+                catalog: ${var.catalog}
+                database: ${var.database}
+          max_retries: 0

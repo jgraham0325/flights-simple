@@ -42,12 +42,7 @@ def get_flight_schema():
 def read_batch(spark, path):
     schema = get_flight_schema()
 
-    return (
-        spark.read.format("csv")
-        .option("header", "false")
-        .schema(schema)
-        .load(path)
-    )
+    return spark.read.format("csv").option("header", "false").schema(schema).load(path)
 
 
 def read_autoloader(spark, path, checkpoint_location):
