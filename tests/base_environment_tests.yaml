@@ -1,0 +1,6 @@
+# Base environment can be used from multiple notebooks, ensuring consistent dependencies
+client: '2'
+dependencies:
+  - pytest==8.3.5
+  - databricks-connect==16.1.1
+  - typing_extensions==4.12.2

@@ -7,7 +7,7 @@ resources:
       tasks:
         - task_key: notebook_task
           notebook_task:
-            notebook_path: ../tests/pyspark_testing_notebook_ipynb.ipynb
+            notebook_path: ../tests/pyspark_testing_notebook.py
             base_parameters:
                 catalog: ${var.catalog}
                 database: ${var.database}
